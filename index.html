@@ -244,17 +244,29 @@
         }
 
         /* --- ARREGLO PARA CELULARES (RESPONSIVE) --- */
+/* --- ARREGLO PARA CELULARES (RESPONSIVE) --- */
         @media (max-width: 768px) {
-            /* Arregla la barra de navegación para que no se corte */
+            /* Apila el logo arriba y los botones abajo */
             .top-navbar {
-                padding: 15px 20px;
+                flex-direction: column;
+                padding: 15px 10px;
+                gap: 15px;
                 width: 100%;
                 box-sizing: border-box;
             }
             
-            /* Oculta los botones del menú en celular para que no estorben */
+            /* Vuelve a mostrar los botones y permite que se acomoden */
             .nav-links { 
-                display: none; 
+                display: flex;
+                flex-wrap: wrap; /* Si no caben en una línea, bajan a la siguiente */
+                justify-content: center; /* Los centra en la pantalla */
+                gap: 10px;
+            }
+
+            /* Hace los botones un poco más pequeños para el celular */
+            .nav-links a {
+                padding: 8px 12px;
+                font-size: 14px;
             }
 
             /* Apila las filas de información una sobre otra */
@@ -265,25 +277,18 @@
             }
 
             /* Hace que las imágenes ocupen todo el ancho del celular */
-            .info-image {
-                width: 100%;
-            }
-            
-            .info-image img {
-                width: 100%;
-                height: auto;
-            }
+            .info-image { width: 100%; }
+            .info-image img { width: 100%; height: auto; }
 
-            /* Convierte las grillas de 3 y 2 columnas en 1 sola columna para celular */
+            /* Convierte las grillas en 1 sola columna para celular */
             .rooms-360-grid, .tours-grid { 
                 grid-template-columns: 1fr; 
                 gap: 20px;
             }
             
-            /* Ajusta los textos para que no choquen con los bordes */
-            .container {
-                padding: 30px 15px;
-            }
+            /* Ajusta los textos */
+            .container { padding: 30px 15px; }
+        }
         }
     </style>
 </head>
