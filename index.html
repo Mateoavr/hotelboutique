@@ -3,403 +3,364 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reserva tu Habitación - Hotel Boutique Valparaíso</title>
+    <title>Hotel Boutique Valparaíso</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            background-color: #fcfbf9;
+            background-color: #ffffff;
             color: #333;
         }
 
-        /* --- Nueva Barra de Navegación Estilo Agencia --- */
+        /* --- Barra de Navegación --- */
         .top-navbar {
-            background-color: #1a2530; /* Azul marino elegante */
+            background-color: #1a2530;
             color: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 30px;
-            font-size: 14px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            padding: 20px 40px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .top-navbar .logo {
-            font-size: 24px;
+            font-size: 26px;
             font-family: 'Georgia', serif;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .top-navbar .logo strong {
-            color: #d4af37; /* Dorado */
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .nav-actions a {
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .nav-actions a:hover {
             color: #d4af37;
         }
 
-        /* Botón blanco de ventas */
-        .btn-ventas {
-            background-color: white;
-            color: #27ae60 !important; /* Texto verde */
-            padding: 8px 15px;
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: #d4af37;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid #d4af37;
             border-radius: 4px;
-            font-weight: bold !important;
-            margin-right: 10px;
-        }
-
-        .btn-ventas:hover {
-            background-color: #f1f1f1;
-        }
-
-        /* Divisor vertical (|) */
-        .divider {
-            color: #555;
-            font-size: 18px;
-            margin: 0 5px;
-        }
-
-        /* Icono circular del usuario */
-        .nav-icon-circle {
-            border: 1px solid white;
-            border-radius: 50%;
-            width: 28px;
-            height: 28px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        .nav-icon {
-            font-size: 20px;
-        }
-
-        /* --- Sección Superior (Hero) con Buscador --- */
-        .hero {
-            background: linear-gradient(rgba(26, 37, 48, 0.7), rgba(26, 37, 48, 0.7)), url('https://images.unsplash.com/photo-1542314831-c6a4d1409e54?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover;
-            padding: 80px 20px;
-            text-align: center;
-            color: white;
-        }
-
-        .hero h2 {
+            font-size: 16px;
             font-family: 'Georgia', serif;
-            font-size: 38px;
-            margin-top: 0;
-            color: #d4af37;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
         }
 
-        .hero p {
-            font-size: 18px;
+        .nav-links a:hover, .nav-links a.active {
+            background-color: #d4af37;
+            color: #1a2530;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        /* --- Contenedor Principal --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .seccion {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .seccion.activa {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Títulos Generales --- */
+        .main-title {
+            font-family: 'Georgia', serif;
+            font-size: 36px;
+            text-align: center;
+            color: #1a2530;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #555;
+            font-size: 16px;
             margin-bottom: 40px;
         }
 
-        /* --- Buscador de Fechas --- */
-        .search-bar {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            max-width: 900px;
-            margin: 0 auto;
+        /* --- SECCIÓN HOTEL (VISTA INICIO) --- */
+        .badge-container {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .badge-container img {
+            width: 150px;
+        }
+
+        .info-row {
             display: flex;
-            gap: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            flex-wrap: wrap;
-            align-items: flex-end;
+            gap: 40px;
+            margin-bottom: 60px;
+            align-items: center;
         }
 
-        .form-group {
+        .info-row.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .info-text {
             flex: 1;
-            text-align: left;
-            min-width: 180px;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 8px;
-            color: #1a2530;
-            font-size: 14px;
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
             font-size: 15px;
+            line-height: 1.8;
+            color: #444;
         }
 
-        .btn-buscar {
-            background: #d4af37;
-            color: #1a2530;
-            border: none;
-            padding: 12px 25px;
-            font-weight: bold;
+        .info-image {
+            flex: 1;
+        }
+
+        .info-image img {
+            width: 100%;
             border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background 0.3s;
-            height: 44px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .btn-buscar:hover {
-            background: #c5a028;
+        .bottom-text {
+            text-align: center;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #444;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
         }
 
-        /* --- Catálogo de Habitaciones --- */
-        .rooms-container {
-            max-width: 1100px;
-            margin: 60px auto;
-            padding: 0 20px;
+        /* --- SECCIÓN HABITACIONES Y TOURS --- */
+        .habitaciones-desc, .tours-desc {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 50px auto;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #444;
         }
 
-        .rooms-container h3 {
-            font-family: 'Georgia', serif;
-            color: #1a2530;
-            font-size: 28px;
-            border-bottom: 2px solid #d4af37;
-            padding-bottom: 10px;
-            display: inline-block;
-            margin-bottom: 30px;
-        }
-
-        .rooms-grid {
+        /* Grid de 3 columnas para Habitaciones */
+        .rooms-360-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
         }
 
-        .room-card {
-            background: white;
+        /* Grid de 2 columnas para Tours */
+        .tours-grid {
+             display: grid;
+             grid-template-columns: repeat(2, 1fr);
+             gap: 50px;
+             max-width: 900px;
+             margin: 0 auto;
+        }
+
+        /* Tarjeta Blanca (Se usa tanto en Habitaciones como en Tours) */
+        .room-360-card {
+            background-color: white;
             border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .room-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        }
-
-        .room-img {
-            height: 220px;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .room-info {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             padding: 25px;
             display: flex;
             flex-direction: column;
-            flex-grow: 1;
+            text-align: center;
         }
 
-        .room-info h4 {
-            margin: 0 0 10px 0;
-            font-family: 'Georgia', serif;
-            color: #1a2530;
+        .room-360-card h3 {
+            font-family: 'Arial', sans-serif;
             font-size: 22px;
-        }
-
-        .room-info p {
-            color: #666;
-            font-size: 15px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-
-        .room-features {
-            display: flex;
-            gap: 15px;
             margin-bottom: 20px;
             color: #1a2530;
-            font-size: 14px;
-            font-weight: bold;
         }
 
-        .price-container {
-            border-top: 1px solid #eaeaea;
-            padding-top: 15px;
-            margin-bottom: 15px;
-        }
-
-        .price {
-            font-size: 24px;
-            font-weight: bold;
-            color: #1a2530;
-        }
-        
-        .price span {
-            font-size: 14px;
-            font-weight: normal;
-            color: #666;
-        }
-
-        .btn-reservar {
+        .room-360-image {
             width: 100%;
-            background: #1a2530;
+            height: 250px;
+            background-color: #eee;
+            background-size: cover;
+            background-position: center;
+            border-radius: 4px;
+        }
+
+        .room-360-desc {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #444;
+            margin-top: 15px;
+            margin-bottom: 20px;
+            padding: 0 10px;
+        }
+
+        .btn-verde {
+            background-color: #5b8a3f;
             color: white;
             border: none;
-            padding: 14px;
-            border-radius: 4px;
-            font-size: 16px;
+            padding: 12px 20px;
+            font-size: 14px;
             font-weight: bold;
+            border-radius: 4px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: background 0.3s;
+            width: 80%;
+            margin: auto auto 0 auto; /* Empuja el botón al fondo */
         }
 
-        .btn-reservar:hover {
-            background: #d4af37;
-            color: #1a2530;
+        .btn-verde:hover {
+            background-color: #487230;
+        }
+
+        /* Responsivo para móviles */
+        @media (max-width: 768px) {
+            .info-row, .info-row.reverse { flex-direction: column; }
+            .rooms-360-grid, .tours-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Cabecera de Navegación (Nueva Estructura) -->
+    <!-- Cabecera de Navegación -->
     <header class="top-navbar">
         <div class="logo">
-            <strong>Hotel Boutique</strong> Valparaíso
+            <span style="font-size: 32px;"></span>
+            <div>
+                <strong>Hotel Boutique</strong><br>
+                <span style="font-size: 14px; font-family: 'Segoe UI', sans-serif;">Valparaíso</span>
+            </div>
         </div>
-        <div class="nav-actions">
-            <a href="#" class="btn-ventas">📞 Para ventas 600 570 0035</a>
-            <a href="#" class="nav-item">⭐ Puntos Hotel</a>
-            <a href="#" class="nav-item">❓ Ayuda</a>
-            <a href="#" class="nav-item">🧳 Mis viajes</a>
-            <a href="#" class="nav-icon-circle">👤</a>
-            <a href="#" class="nav-icon">☰</a>
-            <span class="divider">|</span>
-            <a href="#" class="nav-item">🛒 Carrito</a>
+        <div class="nav-links">
+            <a onclick="cambiarSeccion('hotel', this)" class="nav-btn activa">Hotel</a>
+            <a onclick="cambiarSeccion('habitaciones', this)" class="nav-btn">Habitaciones</a>
+            <a onclick="cambiarSeccion('tours', this)" class="nav-btn">Tours</a>
+            <a onclick="alert('Redirigiendo a reserva...')" class="nav-btn">Reserva</a>
         </div>
     </header>
 
-    <!-- Buscador Superior -->
-    <div class="hero">
-        <h2>Descubre la Magia del Puerto</h2>
-        <p>Encuentra tu refugio perfecto con vista al mar y encanto patrimonial.</p>
-        
-        <div class="search-bar">
-            <div class="form-group">
-                <label>Check-in</label>
-                <input type="date" id="checkin">
+    <div class="container">
+
+        <!-- ================= SECCIÓN 1: HOTEL ================= -->
+        <div id="hotel" class="seccion activa">
+            <h1 class="main-title">Hotel, Tours en Valparaíso</h1>
+            <p class="subtitle">_______________________________________________</p>
+
+            <div class="info-row">
+                <div class="info-text">
+                    <p>__________________________________________________________________________<br>__________________________________________________________________________</p>
+                    <p>__________________________________________________________________________<br>__________________________________________________________________________</p>
+                </div>
+                <div class="info-image">
+                    <img src="https://www.variadoreschile.cl/wp-content/uploads/2021/04/02.jpg" alt="Exterior del Hotel">
+                </div>
             </div>
-            <div class="form-group">
-                <label>Check-out</label>
-                <input type="date" id="checkout">
+
+            <div class="info-row reverse">
+                <div class="info-text">
+                    <p>__________________________________________________________________________<br>__________________________________________________________________________</p>
+                    <p>__________________________________________________________________________<br>__________________________________________________________________________</p>
+                </div>
+                <div class="info-image">
+                    <img src="https://hotel17.cl/wp-content/uploads/sites/58/2017/06/3.2-VISTA-HABITACION-GRANDE.jpg" alt="Interior de Habitación">
+                </div>
             </div>
-            <div class="form-group">
-                <label>Huéspedes</label>
-                <select id="huespedes">
-                    <option value="1">1 Adulto</option>
-                    <option value="2" selected>2 Adultos</option>
-                    <option value="3">3 Adultos</option>
-                    <option value="4">Familia (4 personas)</option>
-                </select>
+
+            <div class="bottom-text">
+                <p>Te invitamos a ti, a tu pareja y a tu familia a descubrir nuestro hermoso hotel, donde la serenidad del puerto y la energía del mar se combinan para ofrecerte una experiencia inolvidable. A solo minutos del centro de Valparaíso, el Hotel Boutique es el lugar perfecto para recargar energías y crear recuerdos memorables.</p>
             </div>
-            <button class="btn-buscar" onclick="buscarHabitaciones()">Buscar Disponibilidad</button>
         </div>
+
+        <!-- ================= SECCIÓN 2: HABITACIONES ================= -->
+        <div id="habitaciones" class="seccion">
+            <h1 class="main-title">Vistas al Mar</h1>
+            <p class="habitaciones-desc">________________________________________<br>_____________________________________________.</p>
+
+            <div class="rooms-360-grid">
+                <!-- Habitación 1 -->
+                <div class="room-360-card">
+                    <h3>Habitacion Estandar</h3>
+                    <div class="room-360-image" style="background-image: url('https://hotel17.cl/wp-content/uploads/sites/58/2017/06/3.2-VISTA-HABITACION-GRANDE.jpg');"></div>
+                    <p class="room-360-desc">_________________________________________<br>_________________________________________.</p>
+                    <button class="btn-verde" onclick="alert('Redirigiendo a reserva...')">Reserva esta habitación</button>
+                </div>
+
+                <!-- Habitación 2 -->
+                <div class="room-360-card">
+                    <h3>Habitacion Doble</h3>
+                    <div class="room-360-image" style="background-image: url('https://hotel17.cl/wp-content/uploads/sites/58/2017/06/3.2-VISTA-HABITACION-GRANDE.jpg');"></div>
+                    <p class="room-360-desc">_________________________________________<br>_________________________________________.</p>
+                    <button class="btn-verde" onclick="alert('Redirigiendo a reserva...')">Reserva esta habitación</button>
+                </div>
+
+                <!-- Habitación 3 -->
+                <div class="room-360-card">
+                    <h3>Habitacion Familiar</h3>
+                    <div class="room-360-image" style="background-image: url('https://hotel17.cl/wp-content/uploads/sites/58/2017/06/3.2-VISTA-HABITACION-GRANDE.jpg');"></div>
+                    <p class="room-360-desc">_________________________________________<br>_________________________________________.</p>
+                    <button class="btn-verde" onclick="alert('Redirigiendo a reserva...')">Reserva esta habitación</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SECCIÓN 3: TOURS ================= -->
+        <div id="tours" class="seccion">
+            <h1 class="main-title">Tours</h1>
+            <p class="tours-desc">________________________________________<br>_____________________________________________.</p>
+
+            <div class="tours-grid">
+                <!--  Tour 1 -->
+                <div class="room-360-card">
+                    <h3> Tour por Cerros y Ascensores </h3>
+                    <div class="room-360-image" style="background-image: url('https://i0.wp.com/passporterapp.com/es/blog/wp-content/uploads/2026/03/Moverse-Valparaiso-ascensores-taxis-caminatas-cerros-1024x819.jpg?resize=1024%2C819&ssl=1');"></div>
+                    <p class="room-360-desc">_________________________________________<br>_________________________________________.</p>
+                    <button class="btn-verde" onclick="alert('Redirigiendo a reserva...')">Reserva tours</button>
+                </div>
+
+                <!--  Tour 2 -->
+                <div class="room-360-card">
+                    <h3> Cena Patrimonial Porteña </h3>
+                    <div class="room-360-image" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqud1WAmq2oJU3bsMu_1SrNqrI9tjUkebDitdZiuqEmwl0l2Ruz2ZhMR4&s=10');"></div>
+                    <p class="room-360-desc">_________________________________________<br>_________________________________________.</p>
+                    <button class="btn-verde" onclick="alert('Redirigiendo a reserva...')">Reserva tours</button>
+                </div>
+            </div>
+        </div>  
     </div>
 
-    <!-- Catálogo de Habitaciones -->
-    <div class="rooms-container">
-        <h3>Habitaciones Disponibles</h3>
-        
-        <div class="rooms-grid">
-            
-            <!-- Habitación 1 -->
-            <div class="room-card">
-                <div class="room-img" style="background-image: url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
-                <div class="room-info">
-                    <h4>Habitación Patrimonial Vista al Mar</h4>
-                    <p>Nuestra habitación más solicitada. Disfruta de un balcón privado con vista directa a la bahía de Valparaíso y decoración de época restaurada.</p>
-                    <div class="room-features">
-                        <span>🛏️ Cama King</span>
-                        <span>🌊 Vista al Mar</span>
-                        <span>📶 Wi-Fi</span>
-                    </div>
-                    <div class="price-container">
-                        <div class="price">$85.000 <span>/ noche</span></div>
-                    </div>
-                    <button class="btn-reservar" onclick="seleccionarHabitacion()">Seleccionar</button>
-                </div>
-            </div>
-
-            <!-- Habitación 2 -->
-            <div class="room-card">
-                <div class="room-img" style="background-image: url('https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
-                <div class="room-info">
-                    <h4>Suite Superior Cerros</h4>
-                    <p>Espaciosa suite ideal para estadías largas. Incluye sala de estar separada y ventanales con vista a los coloridos cerros del puerto.</p>
-                    <div class="room-features">
-                        <span>🛏️ 2 Camas Queen</span>
-                        <span>🛋️ Sala de Estar</span>
-                        <span>📶 Wi-Fi</span>
-                    </div>
-                    <div class="price-container">
-                        <div class="price">$110.000 <span>/ noche</span></div>
-                    </div>
-                    <button class="btn-reservar" onclick="seleccionarHabitacion()">Seleccionar</button>
-                </div>
-            </div>
-
-            <!-- Habitación 3 -->
-            <div class="room-card">
-                <div class="room-img" style="background-image: url('https://images.unsplash.com/photo-1590490360182-c33d57733427?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
-                <div class="room-info">
-                    <h4>Habitación Estándar Interior</h4>
-                    <p>Acogedora y silenciosa. Perfecta para descansar después de un largo día recorriendo los ascensores y museos de la ciudad.</p>
-                    <div class="room-features">
-                        <span>🛏️ Cama Matrimonial</span>
-                        <span>📺 Smart TV</span>
-                        <span>📶 Wi-Fi</span>
-                    </div>
-                    <div class="price-container">
-                        <div class="price">$65.000 <span>/ noche</span></div>
-                    </div>
-                    <button class="btn-reservar" onclick="seleccionarHabitacion()">Seleccionar</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
+    <!-- Script para cambiar entre secciones -->
     <script>
-        function buscarHabitaciones() {
-            let checkin = document.getElementById("checkin").value;
-            let checkout = document.getElementById("checkout").value;
-            
-            if(!checkin || !checkout) {
-                alert("Por favor, selecciona las fechas de Check-in y Check-out para buscar disponibilidad.");
-            } else {
-                alert("Buscando disponibilidad para las fechas seleccionadas...");
-            }
-        }
+        function cambiarSeccion(idSeccion, elementoBoton) {
+            document.getElementById('hotel').classList.remove('activa');
+            document.getElementById('habitaciones').classList.remove('activa');
+            document.getElementById('tours').classList.remove('activa'); 
 
-        function seleccionarHabitacion() {
-            alert("¡Excelente elección! Redirigiendo al carrito de reservas...");
-            // window.location.href = "pago.html"; // Aquí pondrías el enlace a la página de pago
+            document.getElementById(idSeccion).classList.add('activa');
+
+            let botones = document.getElementsByClassName('nav-btn');
+            for (let i = 0; i < botones.length; i++) {
+                botones[i].classList.remove('activa');
+            }
+
+            elementoBoton.classList.add('activa');
         }
     </script>
 </body>
