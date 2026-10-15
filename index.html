@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva tu Habitación - Hotel Boutique Valparaíso</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #fcfbf9;
+            color: #333;
+        }
+
+        /* --- Nueva Barra de Navegación Estilo Agencia --- */
+        .top-navbar {
+            background-color: #1a2530; /* Azul marino elegante */
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            font-size: 14px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .top-navbar .logo {
+            font-size: 24px;
+            font-family: 'Georgia', serif;
+        }
+
+        .top-navbar .logo strong {
+            color: #d4af37; /* Dorado */
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-actions a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-actions a:hover {
+            color: #d4af37;
+        }
+
+        /* Botón blanco de ventas */
+        .btn-ventas {
+            background-color: white;
+            color: #27ae60 !important; /* Texto verde */
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: bold !important;
+            margin-right: 10px;
+        }
+
+        .btn-ventas:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Divisor vertical (|) */
+        .divider {
+            color: #555;
+            font-size: 18px;
+            margin: 0 5px;
+        }
+
+        /* Icono circular del usuario */
+        .nav-icon-circle {
+            border: 1px solid white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .nav-icon {
+            font-size: 20px;
+        }
+
+        /* --- Sección Superior (Hero) con Buscador --- */
+        .hero {
+            background: linear-gradient(rgba(26, 37, 48, 0.7), rgba(26, 37, 48, 0.7)), url('https://images.unsplash.com/photo-1542314831-c6a4d1409e54?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover;
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h2 {
+            font-family: 'Georgia', serif;
+            font-size: 38px;
+            margin-top: 0;
+            color: #d4af37;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        /* --- Buscador de Fechas --- */
+        .search-bar {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            gap: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            flex-wrap: wrap;
+            align-items: flex-end;
+        }
+
+        .form-group {
+            flex: 1;
+            text-align: left;
+            min-width: 180px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #1a2530;
+            font-size: 14px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 15px;
+        }
+
+        .btn-buscar {
+            background: #d4af37;
+            color: #1a2530;
+            border: none;
+            padding: 12px 25px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+            height: 44px;
+        }
+
+        .btn-buscar:hover {
+            background: #c5a028;
+        }
+
+        /* --- Catálogo de Habitaciones --- */
+        .rooms-container {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .rooms-container h3 {
+            font-family: 'Georgia', serif;
+            color: #1a2530;
+            font-size: 28px;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 10px;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .room-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .room-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .room-img {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .room-info {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .room-info h4 {
+            margin: 0 0 10px 0;
+            font-family: 'Georgia', serif;
+            color: #1a2530;
+            font-size: 22px;
+        }
+
+        .room-info p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .room-features {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            color: #1a2530;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .price-container {
+            border-top: 1px solid #eaeaea;
+            padding-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1a2530;
+        }
+        
+        .price span {
+            font-size: 14px;
+            font-weight: normal;
+            color: #666;
+        }
+
+        .btn-reservar {
+            width: 100%;
+            background: #1a2530;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-reservar:hover {
+            background: #d4af37;
+            color: #1a2530;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabecera de Navegación (Nueva Estructura) -->
+    <header class="top-navbar">
+        <div class="logo">
+            <strong>Hotel Boutique</strong> Valparaíso
+        </div>
+        <div class="nav-actions">
+            <a href="#" class="btn-ventas">📞 Para ventas 600 570 0035</a>
+            <a href="#" class="nav-item">⭐ Puntos Hotel</a>
+            <a href="#" class="nav-item">❓ Ayuda</a>
+            <a href="#" class="nav-item">🧳 Mis viajes</a>
+            <a href="#" class="nav-icon-circle">👤</a>
+            <a href="#" class="nav-icon">☰</a>
+            <span class="divider">|</span>
+            <a href="#" class="nav-item">🛒 Carrito</a>
+        </div>
+    </header>
+
+    <!-- Buscador Superior -->
+    <div class="hero">
+        <h2>Descubre la Magia del Puerto</h2>
+        <p>Encuentra tu refugio perfecto con vista al mar y encanto patrimonial.</p>
+        
+        <div class="search-bar">
+            <div class="form-group">
+                <label>Check-in</label>
+                <input type="date" id="checkin">
+            </div>
+            <div class="form-group">
+                <label>Check-out</label>
+                <input type="date" id="checkout">
+            </div>
+            <div class="form-group">
+                <label>Huéspedes</label>
+                <select id="huespedes">
+                    <option value="1">1 Adulto</option>
+                    <option value="2" selected>2 Adultos</option>
+                    <option value="3">3 Adultos</option>
+                    <option value="4">Familia (4 personas)</option>
+                </select>
+            </div>
+            <button class="btn-buscar" onclick="buscarHabitaciones()">Buscar Disponibilidad</button>
+        </div>
+    </div>
+
+    <!-- Catálogo de Habitaciones -->
+    <div class="rooms-container">
+        <h3>Habitaciones Disponibles</h3>
+        
+        <div class="rooms-grid">
+            
+            <!-- Habitación 1 -->
+            <div class="room-card">
+                <div class="room-img" style="background-image: url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="room-info">
+                    <h4>Habitación Patrimonial Vista al Mar</h4>
+                    <p>Nuestra habitación más solicitada. Disfruta de un balcón privado con vista directa a la bahía de Valparaíso y decoración de época restaurada.</p>
+                    <div class="room-features">
+                        <span>🛏️ Cama King</span>
+                        <span>🌊 Vista al Mar</span>
+                        <span>📶 Wi-Fi</span>
+                    </div>
+                    <div class="price-container">
+                        <div class="price">$85.000 <span>/ noche</span></div>
+                    </div>
+                    <button class="btn-reservar" onclick="seleccionarHabitacion()">Seleccionar</button>
+                </div>
+            </div>
+
+            <!-- Habitación 2 -->
+            <div class="room-card">
+                <div class="room-img" style="background-image: url('https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="room-info">
+                    <h4>Suite Superior Cerros</h4>
+                    <p>Espaciosa suite ideal para estadías largas. Incluye sala de estar separada y ventanales con vista a los coloridos cerros del puerto.</p>
+                    <div class="room-features">
+                        <span>🛏️ 2 Camas Queen</span>
+                        <span>🛋️ Sala de Estar</span>
+                        <span>📶 Wi-Fi</span>
+                    </div>
+                    <div class="price-container">
+                        <div class="price">$110.000 <span>/ noche</span></div>
+                    </div>
+                    <button class="btn-reservar" onclick="seleccionarHabitacion()">Seleccionar</button>
+                </div>
+            </div>
+
+            <!-- Habitación 3 -->
+            <div class="room-card">
+                <div class="room-img" style="background-image: url('https://images.unsplash.com/photo-1590490360182-c33d57733427?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="room-info">
+                    <h4>Habitación Estándar Interior</h4>
+                    <p>Acogedora y silenciosa. Perfecta para descansar después de un largo día recorriendo los ascensores y museos de la ciudad.</p>
+                    <div class="room-features">
+                        <span>🛏️ Cama Matrimonial</span>
+                        <span>📺 Smart TV</span>
+                        <span>📶 Wi-Fi</span>
+                    </div>
+                    <div class="price-container">
+                        <div class="price">$65.000 <span>/ noche</span></div>
+                    </div>
+                    <button class="btn-reservar" onclick="seleccionarHabitacion()">Seleccionar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function buscarHabitaciones() {
+            let checkin = document.getElementById("checkin").value;
+            let checkout = document.getElementById("checkout").value;
+            
+            if(!checkin || !checkout) {
+                alert("Por favor, selecciona las fechas de Check-in y Check-out para buscar disponibilidad.");
+            } else {
+                alert("Buscando disponibilidad para las fechas seleccionadas...");
+            }
+        }
+
+        function seleccionarHabitacion() {
+            alert("¡Excelente elección! Redirigiendo al carrito de reservas...");
+            // window.location.href = "pago.html"; // Aquí pondrías el enlace a la página de pago
+        }
+    </script>
+</body>
+</html>
