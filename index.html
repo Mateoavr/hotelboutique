@@ -289,6 +289,45 @@
             /* Ajusta los textos */
             .container { padding: 30px 15px; }
         }
+        #servicios {
+            background-color: #f4f5f7;
+            padding: 40px;
+            border-radius: 8px;
+            margin-top: 50px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #servicios h2 {
+            color: #333;
+            font-size: 22px;
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .cards {
+            display: flex;
+            flex-direction: row; /* Esto alinea las tarjetas una al lado de la otra */
+            gap: 20px; /* Espaciado entre las tarjetas */
+            justify-content: space-between; /* Distribuye el espacio sobrante por igual */
+        }
+
+        .card {
+            background-color: #ffffff;
+            padding: 18px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+            color: #2b3a4a;
+            flex: 1; /* Hace que todas las tarjetas tengan exactamente el mismo ancho */
+            box-sizing: border-box; 
+        }
+
+@media (max-width: 768px) {
+            .cards { flex-direction: column; } /* En celulares se verán hacia abajo */
+            /* ... tus otras reglas responsivas ... */
         }
     </style>
 </head>
@@ -335,15 +374,20 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
                 <div class="info-image">
                     <img src="https://hotel17.cl/wp-content/uploads/sites/58/2017/06/3.2-VISTA-HABITACION-GRANDE.jpg" alt="Interior de Habitación">
                 </div>
-            </div>
+</div>
 
-            <div class="bottom-text">
-                <p>Habitaciones cómodas y modernas.
-<br>Desayuno incluido y gastronomía local.
-<br>Tours y experiencias personalizadas.
-<br>Wi-Fi gratuito en todo el hotel.
-<br>Atención las 24 horas.</p>
-            </div>
+            <!-- Aquí eliminamos el </div></section> que estaba sobrando -->
+
+            <section id="servicios">
+                <h2>Servicios</h2>
+                <div class="cards">
+                    <div class="card"><div>📶 Wi‑Fi</div></div>
+                    <div class="card"><div>🍽 Restaurante</div></div>
+                    <div class="card"><div>🚗 Estacionamiento</div></div>
+                    <div class="card"><div>🛎 Recepción 24 horas</div></div>
+                </div>
+            </section>
+            
         </div>
 
         <!-- ================= SECCIÓN 2: HABITACIONES ================= -->
