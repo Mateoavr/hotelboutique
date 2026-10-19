@@ -230,13 +230,72 @@
             background-color: #487230;
         }
 
-        /* Responsivo para móviles */
-        @media (max-width: 768px) {
-            .info-row, .info-row.reverse { flex-direction: column; }
-            .rooms-360-grid, .tours-grid { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
+                /* --- SECCIÓN DE PAGO / RESERVA (NUEVO) --- */
+        .reserva-container {
+            background-color: #f9f9f9;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            max-width: 700px;
+            margin: 0 auto;
         }
-        /* --- ARREGLO PARA LAS LÍNEAS LARGAS --- */
+
+        .reserva-detalle h3 {
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        .tour-checkout-opcion {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .tour-checkout-opcion:hover {
+            border-color: #d4af37;
+        }
+
+        .tour-checkout-opcion input[type="checkbox"] {
+            transform: scale(1.5);
+            cursor: pointer;
+        }
+
+        #reserva-resumen-lista {
+            list-style: none;
+            padding: 0;
+            font-size: 16px;
+        }
+
+        #reserva-resumen-lista li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #ccc;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .reserva-total {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: right;
+            margin-top: 20px;
+            color: #1a2530;
+        }
+
+        .btn-pagar {
+            width: 100%;
+            font-size: 18px;
+            padding: 15px;
+            margin-top: 30px;
+        }
+
         p {
             word-wrap: break-word;
             overflow-wrap: break-word;
@@ -244,9 +303,7 @@
         }
 
         /* --- ARREGLO PARA CELULARES (RESPONSIVE) --- */
-/* --- ARREGLO PARA CELULARES (RESPONSIVE) --- */
         @media (max-width: 768px) {
-            /* Apila el logo arriba y los botones abajo */
             .top-navbar {
                 flex-direction: column;
                 padding: 15px 10px;
@@ -254,80 +311,29 @@
                 width: 100%;
                 box-sizing: border-box;
             }
-            
-            /* Vuelve a mostrar los botones y permite que se acomoden */
             .nav-links { 
                 display: flex;
-                flex-wrap: wrap; /* Si no caben en una línea, bajan a la siguiente */
-                justify-content: center; /* Los centra en la pantalla */
+                flex-wrap: wrap; 
+                justify-content: center; 
                 gap: 10px;
             }
-
-            /* Hace los botones un poco más pequeños para el celular */
             .nav-links a {
                 padding: 8px 12px;
                 font-size: 14px;
             }
-
-            /* Apila las filas de información una sobre otra */
             .info-row, .info-row.reverse { 
                 flex-direction: column; 
                 gap: 20px;
                 margin-bottom: 40px;
             }
-
-            /* Hace que las imágenes ocupen todo el ancho del celular */
             .info-image { width: 100%; }
             .info-image img { width: 100%; height: auto; }
-
-            /* Convierte las grillas en 1 sola columna para celular */
             .rooms-360-grid, .tours-grid { 
                 grid-template-columns: 1fr; 
                 gap: 20px;
             }
-            
-            /* Ajusta los textos */
             .container { padding: 30px 15px; }
-        }
-        #servicios {
-            background-color: #f4f5f7;
-            padding: 40px;
-            border-radius: 8px;
-            margin-top: 50px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        #servicios h2 {
-            color: #333;
-            font-size: 22px;
-            margin-top: 0;
-            margin-bottom: 25px;
-            text-align: left;
-        }
-
-        .cards {
-            display: flex;
-            flex-direction: row; /* Esto alinea las tarjetas una al lado de la otra */
-            gap: 20px; /* Espaciado entre las tarjetas */
-            justify-content: space-between; /* Distribuye el espacio sobrante por igual */
-        }
-
-        .card {
-            background-color: #ffffff;
-            padding: 18px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            display: flex;
-            align-items: center;
-            font-size: 15px;
-            color: #2b3a4a;
-            flex: 1; /* Hace que todas las tarjetas tengan exactamente el mismo ancho */
-            box-sizing: border-box; 
-        }
-
-@media (max-width: 768px) {
-            .cards { flex-direction: column; } /* En celulares se verán hacia abajo */
-            /* ... tus otras reglas responsivas ... */
+            .cards { flex-direction: column; }
         }
     </style>
 </head>
@@ -404,7 +410,7 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
 <br>1 cama
 <br>Wi-Fi gratis
 <br>Desayuno incluido</p>
-                    <button class="btn-verde" onclick="alert('Redirigiendo a reserva...')">Reserva esta habitación</button>
+                    <button class="btn-verde" onclick="reservarHabitacion('Habitación Estándar', 50000)">Reservar Habitación</button>
                 </div>
 
                 <!-- Habitación 2 -->
@@ -415,7 +421,7 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
 <br>2 camas 
 <br>Vista al mar
 <br>Desayuno incluido</p>
-                    <button class="btn-verde" onclick="alert('Redirigiendo a reserva...')">Reserva esta habitación</button>
+                    <button class="btn-verde" onclick="reservarHabitacion('Habitación Doble', 75000)">Reservar Habitación</button>
                 </div>
 
                 <!-- Habitación 3 -->
@@ -427,7 +433,7 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
 <br>Smart TV
 <br>Desayuno incluido
 <br>Balcón con vista al mar</p>
-                    <button class="btn-verde" onclick="alert('Redirigiendo a reserva...')">Reserva esta habitación</button>
+                   <button class="btn-verde" onclick="reservarHabitacion('Habitación Familiar', 100000)">Reservar Habitación</button>
                 </div>
             </div>
         </div>
@@ -443,7 +449,7 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
                     <h3> Tour por Cerros y Ascensores </h3>
                     <div class="room-360-image" style="background-image: url('https://i0.wp.com/passporterapp.com/es/blog/wp-content/uploads/2026/03/Moverse-Valparaiso-ascensores-taxis-caminatas-cerros-1024x819.jpg?resize=1024%2C819&ssl=1');"></div>
                     <p class="room-360-desc">_________________________________________<br>_________________________________________.</p>
-                    <button class="btn-verde" onclick="alert('Redirigiendo a reserva...')">Reserva tours</button>
+                     <button class="btn-verde" onclick="reservarTourDesdeBoton('Tour por Cerros y Ascensores', 'chk-tour-cerros')">Añadir Tour a la Reserva</button>
                 </div>
 
                 <!--  Tour 2 -->
@@ -451,10 +457,58 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
                     <h3> Cena Patrimonial Porteña </h3>
                     <div class="room-360-image" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqud1WAmq2oJU3bsMu_1SrNqrI9tjUkebDitdZiuqEmwl0l2Ruz2ZhMR4&s=10');"></div>
                     <p class="room-360-desc">_________________________________________<br>_________________________________________.</p>
-                    <button class="btn-verde" onclick="alert('Redirigiendo a reserva...')">Reserva tours</button>
+                    <button class="btn-verde" onclick="reservarTourDesdeBoton('Cena Patrimonial Porteña', 'chk-tour-cena')">Añadir Tour a la Reserva</button>
                 </div>
             </div>
         </div>  
+    
+        <!-- ================= SECCIÓN 4: RESERVA / CHECKOUT ================= -->
+        <div id="reserva" class="seccion">
+            <h1 class="main-title">Finalizar Reserva</h1>
+            <p class="subtitle">Revisa tu habitación y personaliza tu estadía con nuestros tours.</p>
+            
+            <div class="reserva-container">
+                <div class="reserva-detalle">
+                    
+                    <!-- Habitacion -->
+                    <h3>1. Tu Habitación</h3>
+                    <p id="reserva-habitacion-info" style="font-size: 18px; color: #555;">No has seleccionado ninguna habitación. Ve a la pestaña "Habitaciones".</p>
+
+                    <!-- Add Tours at Checkout -->
+                    <h3>2. Agrega Tours a tu experiencia</h3>
+                    <p style="font-size: 14px; color: #777;">Puedes agregar o quitar tours para hacer tu estadía más completa.</p>
+                    
+                    <label class="tour-checkout-opcion" for="chk-tour-cerros">
+                        <input type="checkbox" id="chk-tour-cerros" onchange="toggleTour('Tour por Cerros y Ascensores', 15000, this.checked)">
+                        <div>
+                            <strong>Tour por Cerros y Ascensores</strong> <br> 
+                            <span style="color: #5b8a3f;">+$15.000</span>
+                        </div>
+                    </label>
+
+                    <label class="tour-checkout-opcion" for="chk-tour-cena">
+                        <input type="checkbox" id="chk-tour-cena" onchange="toggleTour('Cena Patrimonial Porteña', 25000, this.checked)">
+                        <div>
+                            <strong>Cena Patrimonial Porteña</strong> <br> 
+                            <span style="color: #5b8a3f;">+$25.000</span>
+                        </div>
+                    </label>
+
+                    <!-- Resumen -->
+                    <h3>3. Resumen de Pago</h3>
+                    <ul id="reserva-resumen-lista">
+                        <!-- Se llena con JS -->
+                    </ul>
+                    
+                    <div class="reserva-total">
+                        Total a Pagar: <span id="reserva-total-precio">$0</span>
+                    </div>
+
+                    <button class="btn-verde btn-pagar" onclick="procesarPago()">Proceder al Pago Seguro</button>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- Script para cambiar entre secciones -->
@@ -463,15 +517,105 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
             document.getElementById('hotel').classList.remove('activa');
             document.getElementById('habitaciones').classList.remove('activa');
             document.getElementById('tours').classList.remove('activa'); 
+            document.getElementById('reserva').classList.remove('activa');
 
             document.getElementById(idSeccion).classList.add('activa');
 
-            let botones = document.getElementsByClassName('nav-btn');
+             let botones = document.getElementsByClassName('nav-btn');
             for (let i = 0; i < botones.length; i++) {
                 botones[i].classList.remove('activa');
             }
-
             elementoBoton.classList.add('activa');
+            
+            // Si entra a la reserva, actualiza la vista
+            if(idSeccion === 'reserva') {
+                actualizarVistaReserva();
+            }
+        }
+
+        // LÓGICA DE CARRITO Y RESERVA
+        let carrito = {
+            habitacion: null,
+            precioHabitacion: 0,
+            tours: []
+        };
+
+        function reservarHabitacion(nombre, precio) {
+            carrito.habitacion = nombre;
+            carrito.precioHabitacion = precio;
+            
+            // Redirigir a reserva
+            let btnReserva = document.getElementById('btn-nav-reserva');
+            cambiarSeccion('reserva', btnReserva);
+        }
+
+        function reservarTourDesdeBoton(nombre, checkboxId) {
+            // Marcar el checkbox virtualmente
+            document.getElementById(checkboxId).checked = true;
+            toggleTour(nombre, checkboxId.includes('cerros') ? 15000 : 25000, true);
+            
+            // Redirigir a reserva
+            let btnReserva = document.getElementById('btn-nav-reserva');
+            cambiarSeccion('reserva', btnReserva);
+        }
+
+        function toggleTour(nombre, precio, isChecked) {
+            if(isChecked) {
+                // Verificar que no esté duplicado
+                if(!carrito.tours.some(t => t.nombre === nombre)) {
+                    carrito.tours.push({nombre: nombre, precio: precio});
+                }
+            } else {
+                // Remover tour
+                carrito.tours = carrito.tours.filter(t => t.nombre !== nombre);
+            }
+            actualizarVistaReserva();
+        }
+
+        function actualizarVistaReserva() {
+            let habInfo = document.getElementById('reserva-habitacion-info');
+            let lista = document.getElementById('reserva-resumen-lista');
+            let total = 0;
+            
+            lista.innerHTML = "";
+
+            // 1. Mostrar habitación
+            if(carrito.habitacion) {
+                habInfo.innerHTML = `<strong>${carrito.habitacion}</strong> - <span style="color: #5b8a3f;">$${carrito.precioHabitacion.toLocaleString('es-CL')}</span>`;
+                lista.innerHTML += `<li><span>${carrito.habitacion}</span> <span>$${carrito.precioHabitacion.toLocaleString('es-CL')}</span></li>`;
+                total += carrito.precioHabitacion;
+            } else {
+                habInfo.innerHTML = 'No has seleccionado ninguna habitación. Ve a la pestaña "Habitaciones".';
+            }
+
+            // 2. Mostrar tours
+            carrito.tours.forEach(t => {
+                lista.innerHTML += `<li><span>${t.nombre}</span> <span>$${t.precio.toLocaleString('es-CL')}</span></li>`;
+                total += t.precio;
+            });
+
+            // Si está vacío
+            if(!carrito.habitacion && carrito.tours.length === 0) {
+                lista.innerHTML = "<li>Tu carrito está vacío</li>";
+            }
+
+            // 3. Actualizar total
+            document.getElementById('reserva-total-precio').innerText = `$${total.toLocaleString('es-CL')}`;
+        }
+
+        function procesarPago() {
+            if(!carrito.habitacion) {
+                alert("Debes seleccionar una habitación antes de proceder al pago.");
+                return;
+            }
+            
+            let msg = `¡Reserva Confirmada!\n\nHabitación: ${carrito.habitacion}`;
+            if(carrito.tours.length > 0) {
+                msg += `\nTours agregados: ${carrito.tours.length}`;
+            }
+            msg += `\n\nTotal a pagar: ${document.getElementById('reserva-total-precio').innerText}`;
+            
+            alert(msg);
         }
     </script>
 </body>
