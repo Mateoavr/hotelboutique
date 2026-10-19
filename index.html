@@ -411,7 +411,7 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
 <br>1 cama
 <br>Wi-Fi gratis
 <br>Desayuno incluido</p>
-                    <button class="btn-verde" onclick="reservarHabitacion('Habitación Estándar', 50000)">Reservar Habitación</button>
+                    <button class="btn-verde" onclick="reservarHabitacion('Habitación Estándar', 0)">Reservar Habitación</button>
                 </div>
 
                 <!-- Habitación 2 -->
@@ -423,7 +423,7 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
 <br>2 camas 
 <br>Vista al mar
 <br>Desayuno incluido</p>
-                    <button class="btn-verde" onclick="reservarHabitacion('Habitación Doble', 75000)">Reservar Habitación</button>
+                    <button class="btn-verde" onclick="reservarHabitacion('Habitación Doble', 0)">Reservar Habitación</button>
                 </div>
 
                 <!-- Habitación 3 -->
@@ -436,7 +436,7 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
 <br>Smart TV
 <br>Desayuno incluido
 <br>Balcón con vista al mar</p>
-                   <button class="btn-verde" onclick="reservarHabitacion('Habitación Familiar', 100000)">Reservar Habitación</button>
+                   <button class="btn-verde" onclick="reservarHabitacion('Habitación Familiar', 0)">Reservar Habitación</button>
                 </div>
             </div>
         </div>
@@ -520,18 +520,18 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
                     <p style="font-size: 14px; color: #777;">Puedes agregar o quitar tours para hacer tu estadía más completa.</p>
                     
                     <label class="tour-checkout-opcion" for="chk-tour-cerros">
-                        <input type="checkbox" id="chk-tour-cerros" onchange="toggleTour('Tour por Cerros y Ascensores', 15000, this.checked)">
+                        <input type="checkbox" id="chk-tour-cerros" onchange="toggleTour('Tour por Cerros y Ascensores', 0, this.checked)">
                         <div>
                             <strong>Tour por Cerros y Ascensores</strong> <br> 
-                            <span style="color: #5b8a3f;">+$15.000</span>
+                            <span style="color: #5b8a3f;">+$0</span>
                         </div>
                     </label>
 
                     <label class="tour-checkout-opcion" for="chk-tour-cena">
-                        <input type="checkbox" id="chk-tour-cena" onchange="toggleTour('Cena Patrimonial Porteña', 25000, this.checked)">
+                        <input type="checkbox" id="chk-tour-cena" onchange="toggleTour('Cena Patrimonial Porteña', 0, this.checked)">
                         <div>
                             <strong>Cena Patrimonial Porteña</strong> <br> 
-                            <span style="color: #5b8a3f;">+$25.000</span>
+                            <span style="color: #5b8a3f;">+$0</span>
                         </div>
                     </label>
 
@@ -602,7 +602,7 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
         function reservarTourDesdeBoton(nombre, checkboxId) {
             // Marcar el checkbox virtualmente
             document.getElementById(checkboxId).checked = true;
-            toggleTour(nombre, checkboxId.includes('cerros') ? 15000 : 25000, true);
+            toggleTour(nombre, checkboxId.includes('cerros') ? 0 : 0, true);
             
             // Redirigir a reserva
             let btnReserva = document.getElementById('btn-nav-reserva');
