@@ -387,10 +387,10 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
             <section id="servicios">
                 <h2>Servicios</h2>
                 <div class="cards">
-                    <div class="card"><div>📶 Wi‑Fi</div></div>
-                    <div class="card"><div>🍽 Restaurante</div></div>
-                    <div class="card"><div>🚗 Estacionamiento</div></div>
-                    <div class="card"><div>🛎 Recepción 24 horas</div></div>
+                    <div class="card"><div>Wi‑Fi</div></div>
+                    <div class="card"><div>Restaurante</div></div>
+                    <div class="card"><div>Estacionamiento</div></div>
+                    <div class="card"><div>Recepción 24 horas</div></div>
                 </div>
             </section>
             
@@ -405,6 +405,7 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
                 <!-- Habitación 1 -->
                 <div class="room-360-card">
                     <h3>Habitacion Estandar</h3>
+                    <div class="precio-badge">$/ noche</div>
                     <div class="room-360-image" style="background-image: url('https://hotel17.cl/wp-content/uploads/sites/58/2017/06/3.2-VISTA-HABITACION-GRANDE.jpg');"></div>
                     <p class="room-360-desc"> Hasta 2 personas
 <br>1 cama
@@ -416,6 +417,7 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
                 <!-- Habitación 2 -->
                 <div class="room-360-card">
                     <h3>Habitacion Doble</h3>
+                    <div class="precio-badge">$/ noche</div>
                     <div class="room-360-image" style="background-image: url('https://hotel17.cl/wp-content/uploads/sites/58/2017/06/3.2-VISTA-HABITACION-GRANDE.jpg');"></div>
                     <p class="room-360-desc"> Hasta 3 personas
 <br>2 camas 
@@ -427,6 +429,7 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
                 <!-- Habitación 3 -->
                 <div class="room-360-card">
                     <h3>Habitacion Familiar</h3>
+                    <div class="precio-badge">$/ noche</div>
                     <div class="room-360-image" style="background-image: url('https://hotel17.cl/wp-content/uploads/sites/58/2017/06/3.2-VISTA-HABITACION-GRANDE.jpg');"></div>
                     <p class="room-360-desc">Hasta 4 personas
 <br>2 camas dobles
@@ -441,12 +444,13 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
         <!-- ================= SECCIÓN 3: TOURS ================= -->
         <div id="tours" class="seccion">
             <h1 class="main-title">Tours</h1>
-            <p class="tours-desc">________________________________________<br>_____________________________________________.</p>
+            <p class="tours-desc">Complementa tu estadía explorando la magia de la ciudad.</p>
 
             <div class="tours-grid">
                 <!--  Tour 1 -->
                 <div class="room-360-card">
                     <h3> Tour por Cerros y Ascensores </h3>
+                    <div class="precio-badge">$ / persona</div>
                     <div class="room-360-image" style="background-image: url('https://i0.wp.com/passporterapp.com/es/blog/wp-content/uploads/2026/03/Moverse-Valparaiso-ascensores-taxis-caminatas-cerros-1024x819.jpg?resize=1024%2C819&ssl=1');"></div>
                     <p class="room-360-desc">_________________________________________<br>_________________________________________.</p>
                      <button class="btn-verde" onclick="reservarTourDesdeBoton('Tour por Cerros y Ascensores', 'chk-tour-cerros')">Añadir Tour a la Reserva</button>
@@ -455,6 +459,7 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
                 <!--  Tour 2 -->
                 <div class="room-360-card">
                     <h3> Cena Patrimonial Porteña </h3>
+                    <div class="precio-badge">$ / persona</div>
                     <div class="room-360-image" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqud1WAmq2oJU3bsMu_1SrNqrI9tjUkebDitdZiuqEmwl0l2Ruz2ZhMR4&s=10');"></div>
                     <p class="room-360-desc">_________________________________________<br>_________________________________________.</p>
                     <button class="btn-verde" onclick="reservarTourDesdeBoton('Cena Patrimonial Porteña', 'chk-tour-cena')">Añadir Tour a la Reserva</button>
@@ -465,17 +470,53 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
         <!-- ================= SECCIÓN 4: RESERVA / CHECKOUT ================= -->
         <div id="reserva" class="seccion">
             <h1 class="main-title">Finalizar Reserva</h1>
-            <p class="subtitle">Revisa tu habitación y personaliza tu estadía con nuestros tours.</p>
+            <p class="subtitle">Revisa tu habitación, completa tus datos y personaliza tu estadía.</p>
             
             <div class="reserva-container">
                 <div class="reserva-detalle">
                     
-                    <!-- Habitacion -->
-                    <h3>1. Tu Habitación</h3>
+                    <!-- 1. Habitacion -->
+                    <h3 style="margin-top: 0;">1. Tu Habitación</h3>
                     <p id="reserva-habitacion-info" style="font-size: 18px; color: #555;">No has seleccionado ninguna habitación. Ve a la pestaña "Habitaciones".</p>
 
-                    <!-- Add Tours at Checkout -->
-                    <h3>2. Agrega Tours a tu experiencia</h3>
+                    <!-- 2. Formulario de Datos -->
+                    <h3>2. Fechas y Datos del Huésped</h3>
+                    <div class="formulario-reserva">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="checkin">Check-in</label>
+                                <input type="date" id="checkin" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="checkout">Check-out</label>
+                                <input type="date" id="checkout" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="nombre">Nombre Completo</label>
+                            <input type="text" id="nombre" placeholder="Ej: Juan Pérez" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="rut">RUT / Pasaporte</label>
+                                <input type="text" id="rut" placeholder="Ej: 12.345.678-9" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="telefono">Teléfono</label>
+                                <input type="tel" id="telefono" placeholder="+56 9 1234 5678" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label for="correo">Correo Electrónico</label>
+                            <input type="email" id="correo" placeholder="ejemplo@correo.com" required>
+                        </div>
+                    </div>
+
+                    <!-- 3. Add Tours at Checkout -->
+                    <h3>3. Agrega Tours a tu experiencia</h3>
                     <p style="font-size: 14px; color: #777;">Puedes agregar o quitar tours para hacer tu estadía más completa.</p>
                     
                     <label class="tour-checkout-opcion" for="chk-tour-cerros">
@@ -494,8 +535,8 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
                         </div>
                     </label>
 
-                    <!-- Resumen -->
-                    <h3>3. Resumen de Pago</h3>
+                    <!-- 4. Resumen -->
+                    <h3>4. Resumen de Pago</h3>
                     <ul id="reserva-resumen-lista">
                         <!-- Se llena con JS -->
                     </ul>
@@ -512,7 +553,16 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
     </div>
 
     <!-- Script para cambiar entre secciones -->
+    <!-- Scripts -->
     <script>
+        // Configurar fechas mínimas de Check-in y Check-out (No permite reservar en el pasado)
+        window.onload = function() {
+            let hoy = new Date().toISOString().split('T')[0];
+            document.getElementById('checkin').setAttribute('min', hoy);
+            document.getElementById('checkout').setAttribute('min', hoy);
+        };
+
+        // Navegación entre secciones
         function cambiarSeccion(idSeccion, elementoBoton) {
             document.getElementById('hotel').classList.remove('activa');
             document.getElementById('habitaciones').classList.remove('activa');
@@ -521,7 +571,7 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
 
             document.getElementById(idSeccion).classList.add('activa');
 
-             let botones = document.getElementsByClassName('nav-btn');
+            let botones = document.getElementsByClassName('nav-btn');
             for (let i = 0; i < botones.length; i++) {
                 botones[i].classList.remove('activa');
             }
@@ -604,16 +654,40 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
         }
 
         function procesarPago() {
+            // Validar que exista una habitación seleccionada
             if(!carrito.habitacion) {
                 alert("Debes seleccionar una habitación antes de proceder al pago.");
                 return;
             }
             
-            let msg = `¡Reserva Confirmada!\n\nHabitación: ${carrito.habitacion}`;
-            if(carrito.tours.length > 0) {
-                msg += `\nTours agregados: ${carrito.tours.length}`;
+            // Validar campos del formulario
+            let checkin = document.getElementById('checkin').value;
+            let checkout = document.getElementById('checkout').value;
+            let nombre = document.getElementById('nombre').value;
+            let rut = document.getElementById('rut').value;
+            let telefono = document.getElementById('telefono').value;
+            let correo = document.getElementById('correo').value;
+
+            if(!checkin || !checkout || !nombre || !rut || !telefono || !correo) {
+                alert("Por favor, completa todos los campos de fechas y datos personales.");
+                return;
             }
-            msg += `\n\nTotal a pagar: ${document.getElementById('reserva-total-precio').innerText}`;
+
+            // Validar fechas lógicas
+            if(new Date(checkin) >= new Date(checkout)) {
+                alert("La fecha de Check-out debe ser posterior a la fecha de Check-in.");
+                return;
+            }
+
+            // Mensaje final de confirmación
+            let msg = `¡Reserva Inicializada, ${nombre}!\n\n`;
+            msg += `Fechas: ${checkin} al ${checkout}\n`;
+            msg += `Habitación: ${carrito.habitacion}\n`;
+            if(carrito.tours.length > 0) {
+                msg += `Tours agregados: ${carrito.tours.length}\n`;
+            }
+            msg += `\nTotal a pagar: ${document.getElementById('reserva-total-precio').innerText}\n`;
+            msg += `\nLos detalles y link de pago se enviarán a: ${correo}`;
             
             alert(msg);
         }
