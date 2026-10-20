@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Boutique Valparaíso</title>
     <style>
-        body {
+body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             background-color: #ffffff;
@@ -230,7 +230,7 @@
             background-color: #487230;
         }
 
-                /* --- SECCIÓN DE PAGO / RESERVA (NUEVO) --- */
+        /* --- SECCIÓN DE PAGO / RESERVA --- */
         .reserva-container {
             background-color: #f9f9f9;
             padding: 40px;
@@ -302,44 +302,6 @@
             word-break: break-all;
         }
 
-        /* --- ARREGLO PARA CELULARES (RESPONSIVE) --- */
-        @media (max-width: 768px) {
-            .cards { 
-                flex-direction: column; 
-                gap: 15px; 
-            }
-        @media (max-width: 768px) {
-            .top-navbar {
-                flex-direction: column;
-                padding: 15px 10px;
-                gap: 15px;
-                width: 100%;
-                box-sizing: border-box;
-            }
-            .nav-links { 
-                display: flex;
-                flex-wrap: wrap; 
-                justify-content: center; 
-                gap: 10px;
-            }
-            .nav-links a {
-                padding: 8px 12px;
-                font-size: 14px;
-            }
-            .info-row, .info-row.reverse { 
-                flex-direction: column; 
-                gap: 20px;
-                margin-bottom: 40px;
-            }
-            .info-image { width: 100%; }
-            .info-image img { width: 100%; height: auto; }
-            .rooms-360-grid, .tours-grid { 
-                grid-template-columns: 1fr; 
-                gap: 20px;
-            }
-            .container { padding: 30px 15px; }
-            .cards { flex-direction: column; }
-        }
         /* --- ESTILOS DEL FORMULARIO DE RESERVA --- */
         .formulario-reserva {
             background-color: white;
@@ -389,7 +351,8 @@
             outline: none;
             box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
         }
-/* --- SECCIÓN SERVICIOS --- */
+
+        /* --- SECCIÓN SERVICIOS --- */
         #servicios {
             background-color: #f4f5f7;
             padding: 40px;
@@ -423,6 +386,49 @@
             color: #2b3a4a;
             flex: 1;
             box-sizing: border-box; 
+        }
+
+        /* --- ARREGLO PARA CELULARES (RESPONSIVE) UNIFICADO --- */
+        @media (max-width: 768px) {
+            .top-navbar {
+                flex-direction: column;
+                padding: 15px 10px;
+                gap: 15px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .nav-links { 
+                display: flex;
+                flex-wrap: wrap; 
+                justify-content: center; 
+                gap: 10px;
+            }
+            .nav-links a {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+            .info-row, .info-row.reverse { 
+                flex-direction: column; 
+                gap: 20px;
+                margin-bottom: 40px;
+            }
+            .info-image { width: 100%; }
+            .info-image img { width: 100%; height: auto; }
+            .rooms-360-grid, .tours-grid { 
+                grid-template-columns: 1fr; 
+                gap: 20px;
+            }
+            .container { padding: 30px 15px; }
+            
+            /* Ajustes en celular para tarjetas y formulario */
+            .cards { 
+                flex-direction: column; 
+                gap: 15px; 
+            }
+            .form-row {
+                flex-direction: column;
+                gap: 15px;
+            }
         }
     </style>
 </head>
