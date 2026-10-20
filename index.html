@@ -771,14 +771,12 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
             document.getElementById('reserva-total-precio').innerText = `$${total.toLocaleString('es-CL')}`;
         }
 
-        function procesarPago() {
-            // Validar que exista una habitación seleccionada
+ async function procesarPago() {
             if(!carrito.habitacion) {
                 alert("Debes seleccionar una habitación antes de proceder al pago.");
                 return;
             }
             
-            // Validar campos del formulario
             let checkin = document.getElementById('checkin').value;
             let checkout = document.getElementById('checkout').value;
             let nombre = document.getElementById('nombre').value;
@@ -791,23 +789,56 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
                 return;
             }
 
-            // Validar fechas lógicas
             if(new Date(checkin) >= new Date(checkout)) {
                 alert("La fecha de Check-out debe ser posterior a la fecha de Check-in.");
                 return;
             }
 
-            // Mensaje final de confirmación
-            let msg = `¡Reserva Inicializada, ${nombre}!\n\n`;
-            msg += `Fechas: ${checkin} al ${checkout}\n`;
-            msg += `Habitación: ${carrito.habitacion}\n`;
-            if(carrito.tours.length > 0) {
-                msg += `Tours agregados: ${carrito.tours.length}\n`;
+            // 1. Empaquetar los datos tal como los espera Spring Boot
+            const datosReserva = {
+                habitacion: carrito.habitacion,
+                checkIn: checkin,
+                checkOut: checkout,
+                totalPagado: document.getElementById('reserva-total-precio').innerText,
+                toursDetalle: JSON.stringify(carrito.tours),
+                huesped: {
+                    nombre: nombre,
+                    rut: rut,
+                    telefono: telefono,
+                    correo: correo
+                }
+            };
+
+            // 2. Cambiar el botón visualmente a estado de "Cargando"
+            let btnPagar = document.querySelector('.btn-pagar');
+            btnPagar.innerText = "Procesando...";
+            btnPagar.disabled = true;
+
+            try {
+                // 3. Enviar al Backend (Asegúrate de que Spring Boot esté corriendo en el puerto 8080)
+                const respuesta = await fetch('http://localhost:8080/api/reservas', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(datosReserva)
+                });
+
+                const resultado = await respuesta.json();
+
+                if (respuesta.ok) {
+                    alert(resultado.mensaje); // Muestra "¡Reserva exitosa! Código: X"
+                    // Opcional: recargar página para vaciar el carrito
+                    window.location.reload(); 
+                } else {
+                    alert("Error: " + resultado.error);
+                }
+            } catch (error) {
+                console.error("Error conectando al servidor:", error);
+                alert("Error de conexión. ¿Está encendido el servidor Backend?");
+            } finally {
+                // Restaurar el botón
+                btnPagar.innerText = "Proceder al Pago Seguro";
+                btnPagar.disabled = false;
             }
-            msg += `\nTotal a pagar: ${document.getElementById('reserva-total-precio').innerText}\n`;
-            msg += `\nLos detalles y link de pago se enviarán a: ${correo}`;
-            
-            alert(msg);
         }
     </script>
 </body>
