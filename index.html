@@ -795,20 +795,20 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
             }
 
             // 1. Empaquetar los datos tal como los espera Spring Boot
-            const datosReserva = {
-                habitacion: carrito.habitacion,
-                checkIn: checkin,
-                checkOut: checkout,
-                totalPagado: document.getElementById('reserva-total-precio').innerText,
-                toursDetalle: JSON.stringify(carrito.tours),
-                huesped: {
-                    nombre: nombre,
-                    rut: rut,
-                    telefono: telefono,
-                    correo: correo
-                }
-            };
-
+const datosReserva = {
+    tipoHabitacion: carrito.habitacion, // Ej: "Habitación Estándar"
+    numeroHabitacion: "",               // Se deja vacío a propósito
+    checkIn: checkin,
+    checkOut: checkout,
+    totalPagado: document.getElementById('reserva-total-precio').innerText,
+    toursDetalle: JSON.stringify(carrito.tours),
+    huesped: {
+        nombre: nombre,
+        rut: rut,
+        telefono: telefono,
+        correo: correo
+    }
+};
             // 2. Cambiar el botón visualmente a estado de "Cargando"
             let btnPagar = document.querySelector('.btn-pagar');
             btnPagar.innerText = "Procesando...";
