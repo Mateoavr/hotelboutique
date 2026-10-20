@@ -649,12 +649,16 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
 
     <!-- Script para cambiar entre secciones -->
     <!-- Scripts -->
-    <script>
-        // Configurar fechas mínimas de Check-in y Check-out (No permite reservar en el pasado)
+<script>
+        // Configurar fechas mínimas y detectar cambios
         window.onload = function() {
             let hoy = new Date().toISOString().split('T')[0];
             document.getElementById('checkin').setAttribute('min', hoy);
             document.getElementById('checkout').setAttribute('min', hoy);
+
+            // Escuchar cuando el usuario cambie las fechas para recalcular el precio
+            document.getElementById('checkin').addEventListener('change', actualizarVistaReserva);
+            document.getElementById('checkout').addEventListener('change', actualizarVistaReserva);
         };
 
         // Navegación entre secciones
@@ -697,7 +701,7 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
         function reservarTourDesdeBoton(nombre, checkboxId) {
             // Marcar el checkbox virtualmente
             document.getElementById(checkboxId).checked = true;
-            toggleTour(nombre, checkboxId.includes('cerros') ? 0 : 0, true);
+            toggleTour(nombre, checkboxId.includes('cerros') ? 15000 : 25000, true);
             
             // Redirigir a reserva
             let btnReserva = document.getElementById('btn-nav-reserva');
@@ -724,16 +728,35 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
             
             lista.innerHTML = "";
 
-            // 1. Mostrar habitación
+            // 1. Calcular cantidad de noches
+            let checkinVal = document.getElementById('checkin').value;
+            let checkoutVal = document.getElementById('checkout').value;
+            let noches = 1; // Por defecto cobra 1 noche si no hay fechas
+            
+            if (checkinVal && checkoutVal) {
+                let fechaIn = new Date(checkinVal);
+                let fechaOut = new Date(checkoutVal);
+                let diferenciaMilisegundos = fechaOut.getTime() - fechaIn.getTime();
+                let diferenciaDias = diferenciaMilisegundos / (1000 * 3600 * 24);
+                
+                if (diferenciaDias > 0) {
+                    noches = diferenciaDias;
+                }
+            }
+
+            // 2. Mostrar habitación multiplicada por las noches
             if(carrito.habitacion) {
-                habInfo.innerHTML = `<strong>${carrito.habitacion}</strong> - <span style="color: #5b8a3f;">$${carrito.precioHabitacion.toLocaleString('es-CL')}</span>`;
-                lista.innerHTML += `<li><span>${carrito.habitacion}</span> <span>$${carrito.precioHabitacion.toLocaleString('es-CL')}</span></li>`;
-                total += carrito.precioHabitacion;
+                let precioTotalHabitacion = carrito.precioHabitacion * noches;
+                let textoNoches = noches === 1 ? "1 noche" : `${noches} noches`;
+
+                habInfo.innerHTML = `<strong>${carrito.habitacion}</strong> (${textoNoches}) - <span style="color: #5b8a3f;">$${precioTotalHabitacion.toLocaleString('es-CL')}</span>`;
+                lista.innerHTML += `<li><span>${carrito.habitacion} (${textoNoches})</span> <span>$${precioTotalHabitacion.toLocaleString('es-CL')}</span></li>`;
+                total += precioTotalHabitacion;
             } else {
                 habInfo.innerHTML = 'No has seleccionado ninguna habitación. Ve a la pestaña "Habitaciones".';
             }
 
-            // 2. Mostrar tours
+            // 3. Mostrar tours (Se suman una sola vez, no por noche)
             carrito.tours.forEach(t => {
                 lista.innerHTML += `<li><span>${t.nombre}</span> <span>$${t.precio.toLocaleString('es-CL')}</span></li>`;
                 total += t.precio;
@@ -744,7 +767,7 @@ Disfruta de habitaciones cómodas con una vista privilegiada, atención personal
                 lista.innerHTML = "<li>Tu carrito está vacío</li>";
             }
 
-            // 3. Actualizar total
+            // 4. Actualizar total
             document.getElementById('reserva-total-precio').innerText = `$${total.toLocaleString('es-CL')}`;
         }
 
