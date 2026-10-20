@@ -335,6 +335,90 @@
             .container { padding: 30px 15px; }
             .cards { flex-direction: column; }
         }
+        /* --- ESTILOS DEL FORMULARIO DE RESERVA --- */
+        .formulario-reserva {
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            margin-top: 15px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        .form-row .form-group {
+            margin-bottom: 0;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 15px;
+            font-family: 'Segoe UI', sans-serif;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            border-color: #d4af37;
+            outline: none;
+            box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+        }
+/* --- SECCIÓN SERVICIOS --- */
+        #servicios {
+            background-color: #f4f5f7;
+            padding: 40px;
+            border-radius: 8px;
+            margin-top: 50px;
+        }
+
+        #servicios h2 {
+            color: #333;
+            font-size: 22px;
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .cards {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .card {
+            background-color: #ffffff;
+            padding: 18px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+            color: #2b3a4a;
+            flex: 1;
+            box-sizing: border-box; 
+        }
     </style>
 </head>
 <body>
