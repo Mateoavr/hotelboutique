@@ -816,7 +816,7 @@ const datosReserva = {
 
             try {
                 // 3. Enviar al Backend (Asegúrate de que Spring Boot esté corriendo en el puerto 8080)
-                const respuesta = await fetch('http://localhost:8080/api/reservas', {
+                const respuesta = await fetch('https://backendhotel-pj3t.onrender.com/api/reservas', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(datosReserva)
